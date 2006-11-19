@@ -1,0 +1,11 @@
+STATUSFILE="/var/lib/nagios/status.dat"		# path to status.log ('status_file' parameter in nagios.cfg)
+RUNAS="nagios"					# run as
+IRCSERVER="localhost:6667"			# IRC server to connect to (host:port)
+# CHANNEL="#nagircbot"				# channel to connect to (#channel)
+COLORS="yes"					# use colors
+NICK="nagircbot"				# nick
+SEPARATE_LINES="no"				# display all information on seperate lines
+SET_TOPIC="yes"					# show a summary in the topic-line
+CHECK_INTERVAL=30				# check interval (in seconds)
+SHOW_SOFT="yes"					# show state type 'SOFT'
+OTHER=""					# other params (see nagircbot --help)
