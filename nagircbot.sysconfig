@@ -1,6 +1,9 @@
 # path to status.log ('status_file' parameter in nagios.cfg)
 STATUSFILE="/var/lib/nagios/status.dat"
 
+# host:port for retrieving status.log
+#STATUSFILEURL="nagios.example.org:5000"
+
 # run daemon as this user
 RUNAS="nagios"
 
