@@ -25,10 +25,7 @@ else
 	exit 0
 fi
 
-RETVAL=0
-# See how we were called.
-case "$1" in
-  start)
+start() {
 	# Check if the service is already running?
 	if [ ! -f /var/lock/subsys/nagircbot ]; then
 		msg_starting "Nagios IRC Bot"
@@ -47,8 +44,9 @@ case "$1" in
 	else
 		msg_already_running "Nagios IRC Bot"
 	fi
-	;;
-  stop)
+}
+
+stop() {
 	# Stop daemons.
 	if [ -f /var/lock/subsys/nagircbot ]; then
 		msg_stopping "Nagios IRC Bot"
@@ -56,12 +54,21 @@ case "$1" in
 		rm -f /var/lock/subsys/nagircbot >/dev/null 2>&1
 	else
 		msg_not_running "Nagios IRC Bot"
-	fi	
+	fi
+}
+
+RETVAL=0
+# See how we were called.
+case "$1" in
+  start)
+  	start
+	;;
+  stop)
+  	stop
 	;;
   restart|reload|force-reload)
-	$0 stop
-	$0 start
-	exit $?
+	stop
+	start
 	;;
   status)
 	status nagircbot
