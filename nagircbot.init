@@ -29,16 +29,16 @@ start() {
 	# Check if the service is already running?
 	if [ ! -f /var/lock/subsys/nagircbot ]; then
 		msg_starting "Nagios IRC Bot"
-		[ "$STATUSFILE" ] && OTHER="$OTHER -f $STATUSFILE"
-		[ "$IRCSERVER" ] && OTHER="$OTHER -s $IRCSERVER"
-		[ "$CHANNEL" ] && OTHER="$OTHER -c $CHANNEL"
-		[ "$COLORS" == "yes" ] && OTHER="$OTHER -C"
-		[ "$NICK" ] && OTHER="$OTHER -n $NICK"
-		[ "$SEPARATE_LINES" == "yes" ] && OTHER="$OTHER -m"
-		[ "$SET_TOPIC" == "yes" ] && OTHER="$OTHER -t"
-		[ "$CHECK_INTERVAL" ] && OTHER="$OTHER -i $CHECK_INTERVAL"
-		[ "$SHOW_SOFT" ] && OTHER="$OTHER -H"
-		daemon --user $RUNAS nagircbot $OTHER
+		daemon --user $RUNAS nagircbot \
+			${STATUSFILE:+-f $STATUSFILE} \
+			${IRCSERVER:+-s $IRCSERVER} \
+			${CHANNEL:+-c $CHANNEL} \
+			$([ "$COLORS" == "yes" ] && echo -C) \
+			${NICK:+-n $NICK} \
+			$([ "$SEPARATE_LINES" == "yes" ] && echo -m) \
+			$([ "$SET_TOPIC" == "yes" ] && echo -t) \
+			${CHECK_INTERVAL:+-i $CHECK_INTERVAL} \
+			${SHOW_SOFT:+-H}
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/nagircbot
 	else
