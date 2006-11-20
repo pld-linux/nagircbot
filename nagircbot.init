@@ -38,7 +38,8 @@ start() {
 			$([ "$SEPARATE_LINES" == "yes" ] && echo -m) \
 			$([ "$SET_TOPIC" == "yes" ] && echo -t) \
 			${CHECK_INTERVAL:+-i $CHECK_INTERVAL} \
-			${SHOW_SOFT:+-H}
+			${SHOW_SOFT:+-H} \
+			$OTHER
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/nagircbot
 	else
