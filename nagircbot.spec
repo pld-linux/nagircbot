@@ -11,9 +11,10 @@ Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 URL:		http://www.vanheusden.com/nagircbot/
 BuildRequires:	libstdc++-devel
-BuildRequires:	rpmbuild(macros) >= 1.228
+BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	/sbin/chkconfig
-Requires:	nagios
+Requires:	nagios-core
+Requires:	rc-scripts
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -26,12 +27,17 @@ NagIRCBot pokazuje status Nagiosa na kanale IRC.
 %setup -q
 
 %build
-%{__make}
+%{__make} \
+	CC="%{__cc}" \
+	CXX="%{__cxx}" \
+	DEBUG="%{rpmcxxflags}" \
+	LDFLAGS="%{rpmldflags} -lstdc++"
+
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -D %{name} $RPM_BUILD_ROOT%{_bindir}/%{name}
+install -D %{name} $RPM_BUILD_ROOT%{_sbindir}/%{name}
 install -D %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/%{name}
 install -D %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/%{name}
 
@@ -44,13 +50,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %preun
 if [ "$1" = "0" ]; then
-        %service %{name} stop
-        /sbin/chkconfig --del %{name}
+	%service %{name} stop
+	/sbin/chkconfig --del %{name}
 fi
 
 %files
 %defattr(644,root,root,755)
 %doc readme.txt
-%attr(755,root,root) %{_bindir}/*
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/%{name}
-%attr(754,root,root) /etc/rc.d/init.d/%{name}
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/nagircbot
+%attr(755,root,root) %{_sbindir}/nagircbot
+%attr(754,root,root) /etc/rc.d/init.d/nagircbot
