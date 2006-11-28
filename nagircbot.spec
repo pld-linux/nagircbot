@@ -1,5 +1,5 @@
-Summary:	NagIRCBot announces the Nagios status on an IRC channel
-Summary(pl):	NagIRCBot pokazuje status Nagiosa na kanale IRC
+Summary:	NagIRCBot - announce the Nagios status on an IRC channel
+Summary(pl):	NagIRCBot - pokazywanie statusu Nagiosa na kanale IRC
 Name:		nagircbot
 Version:	0.0.19
 Release:	0.2
@@ -31,7 +31,6 @@ NagIRCBot pokazuje status Nagiosa na kanale IRC.
 	CXX="%{__cxx}" \
 	DEBUG="%{rpmcxxflags}" \
 	LDFLAGS="%{rpmldflags} -lstdc++"
-
 
 %install
 rm -rf $RPM_BUILD_ROOT
