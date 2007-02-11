@@ -19,6 +19,9 @@ COLORS="yes"
 # nick
 NICK="nagircbot"
 
+# username (for logging into the irc server)
+USERNAME="nagircbot"
+
 # display all information on seperate lines
 SEPARATE_LINES="no"
 

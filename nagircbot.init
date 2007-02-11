@@ -36,6 +36,7 @@ start() {
 			${CHANNEL:+-c $CHANNEL} \
 			$([ "$COLORS" == "yes" ] && echo -C) \
 			${NICK:+-n $NICK} \
+			${USERNAME:+-u $USERNAME} \
 			$([ "$SEPARATE_LINES" == "yes" ] && echo -m) \
 			$([ "$SET_TOPIC" == "yes" ] && echo -t) \
 			${CHECK_INTERVAL:+-i $CHECK_INTERVAL} \
