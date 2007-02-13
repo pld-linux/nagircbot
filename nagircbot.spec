@@ -1,5 +1,5 @@
 Summary:	NagIRCBot - announce the Nagios status on an IRC channel
-Summary(pl.UTF-8):   NagIRCBot - pokazywanie statusu Nagiosa na kanale IRC
+Summary(pl.UTF-8):	NagIRCBot - pokazywanie statusu Nagiosa na kanale IRC
 Name:		nagircbot
 Version:	0.0.20
 Release:	0.1
