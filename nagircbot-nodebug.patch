@@ -1,0 +1,12 @@
+--- anna.cpp~	2008-06-26 21:00:25.000000000 +0200
++++ anna.cpp	2009-06-16 10:28:04.739645341 +0200
+@@ -301,8 +301,8 @@
+ 	int n_cur = 0;
+ 	int loop;
+ 	int any_shown = 0;
+-#ifdef _DEBUG
+ 	time_t now = time(NULL);
++#ifdef _DEBUG
+ 	printf("Checking @ %s", ctime(&now));
+ #endif
+ 

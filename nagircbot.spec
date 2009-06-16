@@ -1,14 +1,15 @@
 Summary:	NagIRCBot - announce the Nagios status on an IRC channel
 Summary(pl.UTF-8):	NagIRCBot - pokazywanie statusu Nagiosa na kanale IRC
 Name:		nagircbot
-Version:	0.0.20
-Release:	2
+Version:	0.0.29b
+Release:	1
 License:	GPL
 Group:		Applications
 Source0:	http://www.vanheusden.com/nagircbot/%{name}-%{version}.tgz
-# Source0-md5:	c4692e5557d278b597cff0cec09dd0e0
+# Source0-md5:	56cc74df634048881c4057689e692c4e
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
+Patch0:		%{name}-nodebug.patch
 URL:		http://www.vanheusden.com/nagircbot/
 BuildRequires:	libstdc++-devel
 BuildRequires:	rpmbuild(macros) >= 1.268
@@ -24,6 +25,7 @@ NagIRCBot pokazuje status Nagiosa na kanale IRC.
 
 %prep
 %setup -q
+%patch0 -p0
 
 %build
 %{__make} \
