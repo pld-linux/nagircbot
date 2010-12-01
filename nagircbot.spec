@@ -1,12 +1,12 @@
 Summary:	NagIRCBot - announce the Nagios status on an IRC channel
 Summary(pl.UTF-8):	NagIRCBot - pokazywanie statusu Nagiosa na kanale IRC
 Name:		nagircbot
-Version:	0.0.30
-Release:	2
+Version:	0.0.31
+Release:	1
 License:	GPL
 Group:		Applications
 Source0:	http://www.vanheusden.com/nagircbot/%{name}-%{version}.tgz
-# Source0-md5:	deecd1752ce86ec90f7d5ce17988ed21
+# Source0-md5:	c3afc49dd470337e163e5096a2d13470
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Patch0:		%{name}-nodebug.patch
@@ -33,7 +33,7 @@ NagIRCBot pokazuje status Nagiosa na kanale IRC.
 	CC="%{__cc}" \
 	CXX="%{__cxx}" \
 	DEBUG="%{rpmcxxflags}" \
-	LDFLAGS="%{rpmldflags} -lstdc++ -lssl"
+	LDFLAGS="%{rpmldflags} -lstdc++ -lssl -lcrypto"
 
 %install
 rm -rf $RPM_BUILD_ROOT
