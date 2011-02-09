@@ -1,12 +1,12 @@
 Summary:	NagIRCBot - announce the Nagios status on an IRC channel
 Summary(pl.UTF-8):	NagIRCBot - pokazywanie statusu Nagiosa na kanale IRC
 Name:		nagircbot
-Version:	0.0.31
+Version:	0.0.33
 Release:	1
 License:	GPL
 Group:		Applications
 Source0:	http://www.vanheusden.com/nagircbot/%{name}-%{version}.tgz
-# Source0-md5:	c3afc49dd470337e163e5096a2d13470
+# Source0-md5:	8dd1f2077d91ca9273d92a3b207c54b2
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Patch0:		%{name}-nodebug.patch
@@ -37,10 +37,11 @@ NagIRCBot pokazuje status Nagiosa na kanale IRC.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT{%{_sbindir},/etc/rc.d/init.d,/etc/sysconfig}
 
-install -D %{name} $RPM_BUILD_ROOT%{_sbindir}/%{name}
-install -D %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/%{name}
-install -D %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/%{name}
+cp -a %{name} $RPM_BUILD_ROOT%{_sbindir}/%{name}
+cp -a %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/%{name}
+cp -a %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
